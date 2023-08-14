@@ -4,4 +4,4 @@ function add (a, b) {
   b = Number(process.argv[3]);
   console.log(a + b);
 }
-add()
+add();
