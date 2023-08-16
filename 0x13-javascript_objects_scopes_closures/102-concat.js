@@ -14,5 +14,3 @@ const concatenatedContent = content1 + content2;
 
 // Write the concatenated content to the output file
 fs.writeFileSync(outputFilePath, concatenatedContent);
-
-console.log('Files concatenated successfully.');
