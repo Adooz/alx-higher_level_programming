@@ -7,12 +7,10 @@ import urllib.parse
 import urllib.request
 
 
-if __name__ == "__main__":
-    url = argv[1]
-    req = urllib.request.Request(url)
+if __name__ == "__main__":  
     try:
-        urllib.request.urlopen(req)
+        with urllib.request.urlopen(argv[1]) as response:
+            print(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        print(e.code)
-        print(e.read())
+        print(f"Error code: {e.code}")
  
