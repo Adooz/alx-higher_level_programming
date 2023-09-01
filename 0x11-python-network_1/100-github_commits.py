@@ -1,32 +1,15 @@
 #!/usr/bin/python3
-import requests
+""" Lists the recent 10 commits in a Github repository and the committer
+"""
 import sys
-
-def fetch_recent_commits(repository_name, owner_name):
-    """Fetches and prints the 10 most recent commits of a repository."""
-    url = f"https://api.github.com/repos/{owner_name}/{repository_name}/commits"
-
-    try:
-        response = requests.get(url)
-
-        if response.status_code == 200:
-            commits = response.json()
-
-            for commit in commits[:10]:
-                sha = commit['sha']
-                author_name = commit['commit']['author']['name']
-                print(f"{sha}: {author_name}")
-        else:
-            print(f"Error: {response.status_code}")
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {str(e)}")
+import requests
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python script.py <repository_name> <owner_name>")
-        sys.exit(1)
+    url = f'https://api.github.com/repos/{sys.argv[2]}/{sys.argv[1]}/commits'
+    r = requests.get(url)
 
-    repo_name = sys.argv[1]
-    owner_name = sys.argv[2]
-
-    fetch_recent_commits(repo_name, owner_name)
+    commit_history = r.json()
+    for commit in commit_history[:10]:
+        sha = commit.get("sha")
+        committer = commit["commit"]["author"]["name"]
+        print(f"{sha}: {committer}")
