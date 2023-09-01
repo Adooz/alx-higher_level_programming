@@ -9,7 +9,7 @@ if response.status_code == 200:
     content = response.text
     print("Body response:")
     print(f"\t- type: {type(content)}")
-    print(f"\t- content: {content.decode(utf-8)}")
+    print(f"\t- content: {content}")
 else:
     print("Error:")
     print(f"\t- status code: {response.status_code}")
