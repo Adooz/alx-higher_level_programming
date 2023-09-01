@@ -23,7 +23,7 @@ if __name__ == "__main__":
         if r.text != "":
             try:
                 data = r.json()
-                print("[{}] {}".format(data.get("id", "N/A"), data.get("name", "N/A")))
+                print("[{}] {}".format(data.get("id"), data.get("name")))
             except ValueError:
                 print("Not a valid JSON")
         else:
