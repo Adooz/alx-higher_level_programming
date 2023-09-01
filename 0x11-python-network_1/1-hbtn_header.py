@@ -8,5 +8,5 @@ from sys import argv
 
 if ___name__ == "__main__":
     url = argv[1]
-    with request.urlopen(url) as response
+    with request.urlopen(url) as response:
     print(response.header.get(X-Request-Id))
