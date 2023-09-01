@@ -14,19 +14,14 @@ import sys
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        q = ""
-    else:
-        q = sys.argv[1]
+    q = "" if len(sys.argv) == 1 else sys.argv[1]:    
     r = requests.post("http://0.0.0.0:5000/search_user", data={"q": q})
-    if r.status_code == 200:
-        if r.text != "":
-            try:
-                data = r.json()
-                print("[{}] {}".format(data.get("id"), data.get("name")))
-            except ValueError:
-                print("Not a valid JSON")
+    try:
+        data = r.json()
+        if data:
+            print("[{}] {}".format(data.get("id"), data.get("name")))
         else:
             print("No result")
-    else:
-        print("Error: {}".format(r.status_code))
+    except ValueError:
+            print("Not a valid JSON")
+
